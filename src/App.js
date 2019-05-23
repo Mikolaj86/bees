@@ -1,10 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Error404 from "./error404";
 
 function App() {
   return (
     <div className="App">
+      <Error404 />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
