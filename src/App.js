@@ -2,9 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Error404 from "./error404";
-import Register from "./register";
-import Login from "./register";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Register, Login} from "./register";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 
 
@@ -37,9 +36,6 @@ function Menu() {
                         <Link to="/">App</Link>
                     </li>
                     <li>
-                        <Link to="/error404">Error 404</Link>
-                    </li>
-                    <li>
                         <Link to="/register">Register</Link>
                     </li>
                     <li>
@@ -48,14 +44,14 @@ function Menu() {
                 </ul>
 
                 <hr />
-
+                <Switch>
                 <Route exact path="/" component={App} />
-                <Route path="/error404" component={Error404} />
                 <Route path="/register" component={Register} />
                 <Route path="/login" component={Login} />
+                <Route component={Error404} />
+                </Switch>
             </div>
         </Router>
     );
 }
 export default Menu;
-// export default App;

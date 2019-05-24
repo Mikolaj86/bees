@@ -1,7 +1,7 @@
 import React from 'react';
 import './register.css';
 
-function Login() {
+export function Login() {
     return (
         <div className="login_bar">
             <form id="login">
@@ -13,7 +13,7 @@ function Login() {
     );
 }
 
-function Register() {
+export function Register() {
     return (
         <div className="registration_box">
             <div className="registration_box2">
@@ -34,5 +34,3 @@ function Register() {
     );
 }
 
-export {Login};
-export default Register;
