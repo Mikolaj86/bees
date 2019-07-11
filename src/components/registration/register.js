@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import './register.css';
 import Select from "./Select";
 import Input from "./Input";
+import Axios from 'axios';
+
 
 class RegisterUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
             newUser: {
+                username: '',
                 name: '',
                 surname: '',
                 email: '',
@@ -35,6 +38,21 @@ class RegisterUser extends Component {
         )
     }
 
+    addUser = async (event) => {
+        event.preventDefault();
+        let newUser = {
+            username: this.state.newUser.username,
+            first_name: this.state.newUser.name,
+            last_name: this.state.newUser.surname,
+            email: this.state.newUser.email,
+            telephone: this.state.newUser.phone,
+            password: this.state.newUser.password,
+            password2: this.state.newUser.confirmPassword,
+            role: this.state.newUser.typeOfUser
+        }
+        const {user} = await Axios.post('http://127.0.0.1:8000/register/', newUser)
+    }
+
 
 
 
@@ -53,6 +71,14 @@ class RegisterUser extends Component {
                         {/*<input type="number" className="form" name="mobile"*/}
                         {/*       placeholder="Enter your mobile phone number"/>*/}
                         {/*<input type="password" className="form" name="pass" placeholder="Enter your password" required />*/}
+                        <Input type={'text'}
+                               title= {'Użytkownik'}
+                               name= {'username'}
+                               value={this.state.newUser.username}
+                               placeholder = {'Wpisz nazwę użytkownika'}
+                               handleChange = {this.handleInput}
+                               className="form"
+                        />
                         <Input type={'text'}
                                title= {'Imię'}
                                name= {'name'}
@@ -89,13 +115,21 @@ class RegisterUser extends Component {
                                title= {'Password'}
                                name= {'password'}
                                value={this.state.newUser.password}
-                               placeholder = {' '}
+                               placeholder = {'podaj hasło'}
+                               handleChange = {this.handleInput}
+                               className="form"
+                        />
+                        <Input type={'password'}
+                               title= {'Password2'}
+                               name= {'confirmPassword'}
+                               value={this.state.newUser.confirmPassword}
+                               placeholder = {'powtórz hasło'}
                                handleChange = {this.handleInput}
                                className="form"
                         />
                         <Select title={"Type of user"} className="form" name={"typeOfUser"} options={this.state.typeOfUserOptions}
                                 value={this.state.newUser.typeOfUser} placeholder={"Wybierz typ użytkownika"} handleChange={this.handleInput} className="form" />
-                        <input type="submit" id="reg" value="Register"/>
+                        <input onClick={this.addUser} type="submit" id="reg" value="Register"/>
                     </form>
                 </div>
             </div>
