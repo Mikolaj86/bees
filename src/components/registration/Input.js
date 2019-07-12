@@ -3,7 +3,11 @@ import React from 'react';
 
 const Input = (props) => {
     return (
-            <input
+        <div className="form-group">
+            <label htmlFor={props.name} className="form-label">
+                {props.title}
+            </label>
+        <input
                 className="form"
                 id={props.name}
                 name={props.name}
@@ -13,6 +17,7 @@ const Input = (props) => {
                 placeholder={props.placeholder}
 
             />
+        </div>
     )
 }
 
