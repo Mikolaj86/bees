@@ -4,7 +4,6 @@ import './App.css';
 import Error404 from "./error404";
 import AddArea from "./components/add-area/add-area";
 import RegisterUser from "./components/registration/register";
-
 import { Login } from "./components/login/login";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 

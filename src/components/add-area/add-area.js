@@ -9,14 +9,26 @@ class AddArea extends Component {
             areas: [
                 // id: '',
                 // field_size: '',
-                // it_forest: false,
                 // since_when_sown: '',
                 // crop_type: '',
                 // additional_description: '',
+                // it_forest: false,
+                // is_fallen: false,
             ],
             newArea: {},
+            it_forest: false,
+            is_fallen: false,
         }
     }
+
+    handleForestChange = (e) => {
+        const it_forest = e.target.checked;
+        this.setState({ it_forest });
+    };
+    handleFallenChange = (e) => {
+        const is_fallen = e.target.checked;
+        this.setState({ is_fallen });
+    };
 
     handleInput = (e) => {
         let value = e.target.value;
@@ -50,10 +62,11 @@ class AddArea extends Component {
         let newField = {
             id: Date.now(),
             field_size: this.state.newArea.field_size,
-            it_forest: this.state.newArea.it_forest,
+            it_forest: this.state.it_forest,
             crop_type: this.state.newArea.crop_type,
             since_when_sown: this.state.newArea.since_when_sown,
             additional_description: this.state.newArea.additional_description,
+            is_fallen: this.state.is_fallen,
         };
         this.setState({
             areas: [...this.state.areas, newField],
@@ -65,7 +78,10 @@ class AddArea extends Component {
     render() {
         return (
           <div className="Add">
-              <AddAreaInput addField={this.addField} newArea={this.state.newArea} handleChange={this.handleInput} handleTextArea={this.handleTextArea}  />
+              <AddAreaInput addField={this.addField} newArea={this.state.newArea} handleChange={this.handleInput} handleTextArea={this.handleTextArea}
+                            statehecked={this.state.it_forest} forestChange={this.handleForestChange}
+                            statefallen={this.state.is_fallen} fallenChange={this.handleFallenChange}/>
+
           </div>
         );
     }

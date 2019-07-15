@@ -30,6 +30,20 @@ const AddAreaInput = props => {
                     placeholder={"Wpisz datę siania"}
                     handleChange={props.handleChange}
                 />
+                <label>
+                    Las w pobliżu
+                    <input
+                        checked={props.statehecked}
+                        onChange={props.forestChange}
+                        type="checkbox" />
+                </label><br />
+                <label>
+                    Ugór
+                    <input
+                        checked={props.statefallen}
+                        onChange={props.fallenChange}
+                        type="checkbox" />
+                </label>
                 <TextArea
                     title={"Dodatkowe informacje"}
                     rows={20}
