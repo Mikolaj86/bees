@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './register.css';
-import Select from "./Select";
-import Input from "./Input";
+import Select from "../Select";
+import Input from "../Input";
 import Axios from 'axios';
 
 
@@ -21,11 +21,10 @@ class RegisterUser extends Component {
             },
             typeOfUserOptions: ["Zwykły użytkownik", "Pszczelarz", "Rolnik"],
         }
-        this.handleInput = this.handleInput.bind(this);
     }
 
 
-    handleInput(e) {
+    handleInput = (e) => {
         let value = e.target.value;
         let name = e.target.name;
         this.setState( prevState => {

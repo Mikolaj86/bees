@@ -18,7 +18,7 @@ class AddArea extends Component {
         }
     }
 
-    handleInput(e) {
+    handleInput = (e) => {
         let value = e.target.value;
         let name = e.target.name;
         this.setState( prevState => {
@@ -29,6 +29,20 @@ class AddArea extends Component {
                 }
             }, () => console.log(this.state.newArea)
         )
+    }
+
+    handleTextArea = (e) => {
+        console.log("Inside handleTextArea");
+        let value = e.target.value;
+        this.setState(
+            prevState => ({
+                newArea: {
+                    ...prevState.newArea,
+                    additional_description: value
+                }
+            }),
+            () => console.log(this.state.newArea)
+        );
     }
 
     addField = async (event) => {
@@ -42,7 +56,7 @@ class AddArea extends Component {
             additional_description: this.state.newArea.additional_description,
         };
         this.setState({
-            areas: [...this.state.todos, newField],
+            areas: [...this.state.areas, newField],
             newArea: {}
         })
         const {data} = await Axios.post('http://localhost:8000/todoes_create/', newField)
@@ -51,7 +65,7 @@ class AddArea extends Component {
     render() {
         return (
           <div className="Add">
-              <AddAreaInput newArea={this.state.newArea} handleChange={this.handleInput} />
+              <AddAreaInput addField={this.addField} newArea={this.state.newArea} handleChange={this.handleInput} handleTextArea={this.handleTextArea}  />
           </div>
         );
     }
